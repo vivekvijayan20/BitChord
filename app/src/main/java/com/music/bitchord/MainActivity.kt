@@ -4302,6 +4302,7 @@ private fun BitChordApp(
                         song = player.song,
                         isPlaying = player.isPlaying,
                         isLoading = playPauseBusy,
+                        animationsActive = !showNowPlaying,
                         onPlayPause = {
                             togglePlayPause()
                         },
@@ -4339,6 +4340,7 @@ private fun BitChordApp(
                             song = song,
                             isPlaying = player.isPlaying,
                             isLoading = playPauseBusy,
+                            animationsActive = !showNowPlaying,
                             hazeState = hazeState,
                             onPlayPause = {
                                 togglePlayPause()
