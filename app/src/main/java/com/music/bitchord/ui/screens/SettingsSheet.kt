@@ -259,6 +259,7 @@ fun SettingsScreen(
     val signatureApiUrl by AppSettings.signatureApiUrl.collectAsStateWithLifecycle()
     val fullBleedArtwork by AppSettings.fullBleedArtwork.collectAsStateWithLifecycle()
     val fullBleedDetailArtwork by AppSettings.fullBleedDetailArtwork.collectAsStateWithLifecycle()
+    val disableDetailGradients by AppSettings.disableDetailGradients.collectAsStateWithLifecycle()
     val showTotalDuration by AppSettings.showTotalDuration.collectAsStateWithLifecycle()
     val playerTheme by AppSettings.playerTheme.collectAsStateWithLifecycle()
     val syncedLyrics by AppSettings.syncedLyrics.collectAsStateWithLifecycle()
@@ -1223,6 +1224,21 @@ fun SettingsScreen(
                         )
                     },
                     onClick = { AppSettings.setFullBleedDetailArtwork(!fullBleedDetailArtwork) },
+                )
+            }
+            val disableDetailGradientsTitle = stringResource(R.string.disable_detail_gradients)
+            row(disableDetailGradientsTitle, "gradient", "album", "playlist", "detail", "background", "light") {
+                SettingsRow(
+                    icon = SfIcons.Gradient,
+                    title = disableDetailGradientsTitle,
+                    subtitle = stringResource(R.string.disable_detail_gradients_subtitle),
+                    trailing = {
+                        IosSwitch(
+                            checked = disableDetailGradients,
+                            onCheckedChange = AppSettings::setDisableDetailGradients,
+                        )
+                    },
+                    onClick = { AppSettings.setDisableDetailGradients(!disableDetailGradients) },
                 )
             }
             val showTotalDurationTitle = stringResource(R.string.show_total_duration)
