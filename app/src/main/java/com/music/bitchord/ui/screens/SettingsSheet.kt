@@ -1225,21 +1225,6 @@ fun SettingsScreen(
                     onClick = { AppSettings.setFullBleedDetailArtwork(!fullBleedDetailArtwork) },
                 )
             }
-            val showTotalDurationTitle = stringResource(R.string.show_total_duration)
-            row(showTotalDurationTitle, "seek bar", "remaining time", "duration", "song length") {
-                SettingsRow(
-                    icon = SfIcons.Clock,
-                    title = showTotalDurationTitle,
-                    subtitle = stringResource(R.string.show_total_duration_subtitle),
-                    trailing = {
-                        IosSwitch(
-                            checked = showTotalDuration,
-                            onCheckedChange = AppSettings::setShowTotalDuration,
-                        )
-                    },
-                    onClick = { AppSettings.setShowTotalDuration(!showTotalDuration) },
-                )
-            }
             val playerThemeTitle = stringResource(R.string.player_theme)
             row(playerThemeTitle, "background", "player", "mesh", "gradient", "legacy", "simple", "blur") {
                 SettingsRow(
@@ -1710,6 +1695,21 @@ fun SettingsScreen(
                         )
                     },
                     onClick = { AppSettings.setHideVolumeBar(!hideVolumeBar) },
+                )
+            }
+            val showTotalDurationTitle = stringResource(R.string.show_total_duration)
+            row(showTotalDurationTitle, "seek bar", "remaining time", "duration", "song length") {
+                SettingsRow(
+                    icon = SfIcons.Clock,
+                    title = showTotalDurationTitle,
+                    subtitle = stringResource(R.string.show_total_duration_subtitle),
+                    trailing = {
+                        IosSwitch(
+                            checked = showTotalDuration,
+                            onCheckedChange = AppSettings::setShowTotalDuration,
+                        )
+                    },
+                    onClick = { AppSettings.setShowTotalDuration(!showTotalDuration) },
                 )
             }
             val listenTogetherButtonTitle = stringResource(R.string.show_listen_together_button)
