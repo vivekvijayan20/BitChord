@@ -90,6 +90,8 @@
     <string name="testing">Đang kiểm tra…</string>
     <string name="connected">Đã kết nối</string>
     <string name="account_integrations">Tài khoản &amp; tích hợp</string>
+    <string name="youtube_premium_audio">Âm thanh YouTube Premium</string>
+    <string name="youtube_premium_audio_subtitle">Tôi có Premium: phát Opus chất lượng cao hơn ~256 kbps thay vì 160 kbps tiêu chuẩn</string>
     <string name="account_scrobbling">Tài khoản &amp; scrobbling</string>
     <string name="rich_presence">Trạng thái hoạt động (Rich presence)</string>
     <string name="scrobbling">Scrobbling</string>
@@ -217,6 +219,7 @@
     <string name="crossfade">Chuyển bài mượt (Crossfade)</string>
     <string name="crossfade_subtitle">Hòa quyện bài hát hiện tại vào bài tiếp theo</string>
     <string name="automix">Automix [BETA]</string>
+    <string name="automix_overview">Tổng quan Automix</string>
     <string name="automix_performance">Hiệu năng Automix</string>
     <string name="automix_performance_subtitle">Đặt mức sử dụng CPU cho phân tích nền</string>
     <string name="automix_performance_warning">Hiệu năng cao hơn phân tích nhanh hơn, nhưng có thể tốn pin hơn và làm máy ấm lên.</string>
@@ -542,7 +545,13 @@
     <string name="lyrics_share_title">Chia sẻ lời bài hát</string>
     <string name="lyrics_share_description">Những dòng bạn chọn, được bố trí trên một thẻ cùng ảnh bìa.</string>
     <string name="lyrics_share_story">Chuyển thành story</string>
-    <string name="lyrics_share_story_revert">Quay lại thẻ</string>
+    <string name="lyrics_share_story_revert">Chuyển thành thẻ</string>
+    <string name="lyrics_share_canvas">Canvas</string>
+    <string name="lyrics_share_video">Video</string>
+    <string name="lyrics_share_image">Hình ảnh</string>
+    <string name="lyrics_share_saving">Đang lưu…</string>
+    <string name="lyrics_share_gradient">Chuyển màu</string>
+    <string name="lyrics_share_show_logo">Hiện logo BitChord</string>
     <string name="listening_shape">Thói quen nghe nhạc của bạn</string>
     <string name="member_since">Thành viên từ</string>
     <string name="member_since_value">Thành viên từ %1$s</string>
@@ -671,6 +680,14 @@
     <string name="version_cut_aligned">đã khớp</string>
     <string name="automix_enabled_subtitle">Tự động căn thời gian và hòa âm từng đoạn chuyển bài dựa trên bản nhạc. Tắt đi nếu điện thoại nóng lên hoặc nhạc bị giật lag.</string>
     <string name="automix_disabled_subtitle">Tự động căn thời gian và hòa âm đoạn chuyển bài mà không cần thanh trượt. Hiệu năng có thể khác nhau trên các thiết bị yếu hơn.</string>
+    <string name="automix_models_downloading">Đang tải Automix (%1$d MB)… %2$d%%. Cho đến khi xong, bài hát chuyển bằng crossfade thông thường.</string>
+    <string name="automix_model">Mô hình Automix</string>
+    <string name="automix_model_missing">Chưa tải xuống. Automix sẽ tải khi bạn bật, hoặc tải ngay bây giờ.</string>
+    <string name="automix_model_download">Tải xuống (%1$d MB)</string>
+    <string name="automix_model_ready">Đã tải xuống, dùng %1$d MB trên thiết bị này.</string>
+    <string name="automix_models_failed">Không thể tải mô hình. Hãy kiểm tra kết nối và thử lại.</string>
+    <string name="automix_model_delete_title">Xóa mô hình Automix?</string>
+    <string name="automix_model_delete_warning">Thao tác này giải phóng %1$d MB và tắt Automix. Bật lại Automix sẽ tải lại mô hình.</string>
     <string name="advanced_automix">Automix nâng cao</string>
     <string name="advanced_automix_subtitle">Trộn nhạc như DJ: giữ nhịp khớp nhau, chuyển bài đúng phách và cắt giữa những bài không hòa hợp. Không xử lý thêm.</string>
     <string name="no_lyrics_sources_enabled">Không có. Sẽ không tải lời bài hát.</string>
@@ -1374,4 +1391,23 @@
     <string name="bit_perfect_status_inexact">%1$s · không chính xác: nguồn này không phải PCM lossless</string>
     <string name="bit_perfect_status_waiting">Đang chờ bản nhạc lossless trên đầu ra được hỗ trợ</string>
     <string name="bit_perfect_status_unavailable">Không khả dụng cho bản nhạc này (%1$s)</string>
+    <string name="find_a_playlist">Tìm danh sách phát</string>
+    <string name="no_playlists_match">Không có danh sách phát nào khớp với “%1$s”</string>
+    <string name="hide_lyrics_preview">Ẩn lời bài hát</string>
+    <string name="hide_lyrics_preview_subtitle">Ẩn dòng lời bài hát trên trình phát</string>
+    <string name="show_total_duration">Hiện tổng thời lượng</string>
+    <string name="show_total_duration_subtitle">Hiện toàn bộ thời lượng bài hát thay vì thời gian còn lại</string>
+    <string name="sleep_timer_fade_out">Giảm dần âm lượng trước khi tạm dừng</string>
+    <string name="sleep_timer_fade_out_subtitle">Giảm âm lượng từ từ trong 30 giây cuối</string>
+    <string name="disable_spotify_canvas">Tắt Spotify Canvas</string>
+    <string name="disable_spotify_canvas_subtitle">Không bao giờ dùng Spotify Canvas. Ảnh bìa động sẽ lấy từ các nguồn khác</string>
+    <plurals name="queue_removed_count">
+        <item quantity="other">Đã xóa %1$d bài hát</item>
+    </plurals>
+    <string name="queue_removed_song">Đã xóa %1$s</string>
+    <string name="queue_undo_action">Hoàn tác</string>
+    <string name="queue_cleared">Đã xóa hàng đợi</string>
+    <string name="queue_selected_count">Đã chọn %1$d</string>
+    <string name="queue_playlist_added">Đã thêm %1$d/%2$d bài hát</string>
+    <string name="queue_playlist_partial">%1$s (%2$d không tương thích, %3$d đã có, %4$d thất bại)</string>
 </resources>

@@ -87,6 +87,8 @@
     <string name="testing">กำลังทดสอบ…</string>
     <string name="connected">เชื่อมต่อแล้ว</string>
     <string name="account_integrations">บัญชีและการเชื่อมต่อ</string>
+    <string name="youtube_premium_audio">เสียง YouTube Premium</string>
+    <string name="youtube_premium_audio_subtitle">ฉันมี Premium: สตรีม Opus คุณภาพสูงกว่า ~256 kbps แทน 160 kbps มาตรฐาน</string>
     <string name="account_scrobbling">บัญชีและการสโครบเบิล</string>
     <string name="rich_presence">Rich Presence</string>
     <string name="scrobbling">การสโครบเบิล</string>
@@ -207,6 +209,7 @@
     <string name="crossfade">ครอสเฟด</string>
     <string name="crossfade_subtitle">ผสานเพลงหนึ่งเข้ากับเพลงถัดไป</string>
     <string name="automix">Automix [เบต้า]</string>
+    <string name="automix_overview">ภาพรวม Automix</string>
     <string name="automix_performance">ประสิทธิภาพ Automix</string>
     <string name="automix_performance_subtitle">กำหนดปริมาณ CPU ที่ใช้วิเคราะห์ในพื้นหลัง</string>
     <string name="automix_performance_warning">ประสิทธิภาพที่สูงขึ้นจะวิเคราะห์แทร็กได้เร็วขึ้น แต่อาจใช้แบตเตอรี่มากขึ้นและทำให้เครื่องร้อนขึ้น</string>
@@ -528,7 +531,13 @@
     <string name="lyrics_share_title">แชร์เนื้อเพลง</string>
     <string name="lyrics_share_description">บรรทัดที่คุณเลือก เรียงเป็นการ์ดพร้อมปก</string>
     <string name="lyrics_share_story">แปลงเป็นสตอรี่</string>
-    <string name="lyrics_share_story_revert">กลับเป็นการ์ด</string>
+    <string name="lyrics_share_story_revert">แปลงเป็นการ์ด</string>
+    <string name="lyrics_share_canvas">แคนวาส</string>
+    <string name="lyrics_share_video">วิดีโอ</string>
+    <string name="lyrics_share_image">รูปภาพ</string>
+    <string name="lyrics_share_saving">กำลังบันทึก…</string>
+    <string name="lyrics_share_gradient">ไล่สี</string>
+    <string name="lyrics_share_show_logo">แสดงโลโก้ BitChord</string>
     <string name="listening_shape">รูปแบบการฟังของคุณ</string>
     <string name="member_since">สมาชิกตั้งแต่</string>
     <string name="member_since_value">เป็นสมาชิกตั้งแต่ %1$s</string>
@@ -652,6 +661,14 @@
     <string name="version_cut_aligned">จัดตำแหน่งแล้ว</string>
     <string name="automix_enabled_subtitle">กำหนดจังหวะและผสานทุกช่วงเปลี่ยนเพลงจากตัวแทร็กเอง ปิดหากเครื่องร้อนหรือการเล่นกระตุก</string>
     <string name="automix_disabled_subtitle">กำหนดจังหวะและผสานช่วงเปลี่ยนเพลงโดยอัตโนมัติ โดยไม่มีแถบเลื่อน ประสิทธิภาพอาจแตกต่างกันในอุปกรณ์ที่ช้ากว่า</string>
+    <string name="automix_models_downloading">กำลังดาวน์โหลด Automix (%1$d MB)… %2$d%% ระหว่างนี้เพลงจะเฟดข้ามแบบปกติ</string>
+    <string name="automix_model">โมเดล Automix</string>
+    <string name="automix_model_missing">ยังไม่ได้ดาวน์โหลด Automix จะดาวน์โหลดเมื่อเปิดใช้ หรือดาวน์โหลดตอนนี้</string>
+    <string name="automix_model_download">ดาวน์โหลด (%1$d MB)</string>
+    <string name="automix_model_ready">ดาวน์โหลดแล้ว ใช้พื้นที่ %1$d MB บนอุปกรณ์นี้</string>
+    <string name="automix_models_failed">ดาวน์โหลดโมเดลไม่สำเร็จ ตรวจสอบการเชื่อมต่อแล้วลองอีกครั้ง</string>
+    <string name="automix_model_delete_title">ลบโมเดล Automix ไหม</string>
+    <string name="automix_model_delete_warning">จะคืนพื้นที่ %1$d MB และปิด Automix เมื่อเปิด Automix อีกครั้งจะดาวน์โหลดโมเดลใหม่</string>
     <string name="advanced_automix">Automix ขั้นสูง</string>
     <string name="advanced_automix_subtitle">มิกซ์แบบดีเจ: รักษาจังหวะให้ตรงกัน เปลี่ยนเพลงตรงจังหวะ และตัดข้ามเพลงที่เข้ากันไม่ได้ ไม่มีการประมวลผลเพิ่ม</string>
     <string name="no_lyrics_sources_enabled">ไม่มี จะไม่มีการดึงเนื้อเพลง</string>
@@ -1440,4 +1457,23 @@
     <string name="bit_perfect_status_inexact">%1$s · ไม่ตรงทุกบิต: แหล่งนี้ไม่ใช่ PCM แบบไม่สูญเสียคุณภาพ</string>
     <string name="bit_perfect_status_waiting">กำลังรอแทร็กแบบไม่สูญเสียคุณภาพบนเอาต์พุตที่รองรับ</string>
     <string name="bit_perfect_status_unavailable">ไม่พร้อมใช้งานสำหรับแทร็กนี้ (%1$s)</string>
+    <string name="find_a_playlist">ค้นหาเพลย์ลิสต์</string>
+    <string name="no_playlists_match">ไม่มีเพลย์ลิสต์ที่ตรงกับ “%1$s”</string>
+    <string name="hide_lyrics_preview">ซ่อนเนื้อเพลง</string>
+    <string name="hide_lyrics_preview_subtitle">ซ่อนบรรทัดเนื้อเพลงบนหน้าเครื่องเล่น</string>
+    <string name="show_total_duration">แสดงความยาวทั้งหมด</string>
+    <string name="show_total_duration_subtitle">แสดงความยาวเต็มของเพลงแทนเวลาที่เหลือ</string>
+    <string name="sleep_timer_fade_out">ค่อยๆ ลดเสียงก่อนหยุดชั่วคราว</string>
+    <string name="sleep_timer_fade_out_subtitle">ค่อยๆ ลดระดับเสียงในช่วง 30 วินาทีสุดท้าย</string>
+    <string name="disable_spotify_canvas">ปิดใช้ Spotify Canvas</string>
+    <string name="disable_spotify_canvas_subtitle">ไม่ใช้ Spotify Canvas เลย ภาพปกเคลื่อนไหวจะมาจากแหล่งอื่นแทน</string>
+    <plurals name="queue_removed_count">
+        <item quantity="other">นำออก %1$d เพลงแล้ว</item>
+    </plurals>
+    <string name="queue_removed_song">นำ %1$s ออกแล้ว</string>
+    <string name="queue_undo_action">เลิกทำ</string>
+    <string name="queue_cleared">ล้างคิวแล้ว</string>
+    <string name="queue_selected_count">เลือก %1$d รายการ</string>
+    <string name="queue_playlist_added">เพิ่มแล้ว %1$d จาก %2$d เพลง</string>
+    <string name="queue_playlist_partial">%1$s (ใช้ไม่ได้ %2$d, มีอยู่แล้ว %3$d, ล้มเหลว %4$d)</string>
 </resources>

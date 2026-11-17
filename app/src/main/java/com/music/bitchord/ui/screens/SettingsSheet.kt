@@ -163,6 +163,7 @@ import com.music.bitchord.data.settings.BitPerfectMode
 import com.music.bitchord.playback.AudioOutputStatus
 import com.music.bitchord.playback.audio.bitperfect.BitPerfectOutput
 import com.music.bitchord.data.settings.AutomixPerformanceMode
+import com.music.bitchord.playback.smart.AutomixModels
 import com.music.bitchord.R
 import com.music.bitchord.data.sources.DeviceCodecs
 import com.music.bitchord.data.settings.AudioQuality
@@ -231,8 +232,10 @@ fun SettingsScreen(
     val metered by AppSettings.meteredConnection.collectAsStateWithLifecycle()
     val crossfade by AppSettings.crossfadeSeconds.collectAsStateWithLifecycle()
     val smartFade by AppSettings.smartFadeEnabled.collectAsStateWithLifecycle()
+    val automixModels by AutomixModels.state.collectAsStateWithLifecycle()
     val automixPerformance by AppSettings.automixPerformanceMode.collectAsStateWithLifecycle()
     val skipSilence by AppSettings.skipSilence.collectAsStateWithLifecycle()
+    val sleepTimerFadeOut by AppSettings.sleepTimerFadeOut.collectAsStateWithLifecycle()
     val dolbyAtmos by AppSettings.dolbyAtmos.collectAsStateWithLifecycle()
     val directSourceStream by AppSettings.directSourceStream.collectAsStateWithLifecycle()
     // A property of the hardware, so it is read once rather than remembered
@@ -256,8 +259,10 @@ fun SettingsScreen(
     val signatureApiUrl by AppSettings.signatureApiUrl.collectAsStateWithLifecycle()
     val fullBleedArtwork by AppSettings.fullBleedArtwork.collectAsStateWithLifecycle()
     val fullBleedDetailArtwork by AppSettings.fullBleedDetailArtwork.collectAsStateWithLifecycle()
+    val showTotalDuration by AppSettings.showTotalDuration.collectAsStateWithLifecycle()
     val playerTheme by AppSettings.playerTheme.collectAsStateWithLifecycle()
     val syncedLyrics by AppSettings.syncedLyrics.collectAsStateWithLifecycle()
+    val hideLyricsPreview by AppSettings.hideLyricsPreview.collectAsStateWithLifecycle()
     val lyricsSources by AppSettings.lyricsSources.collectAsStateWithLifecycle()
     val translationLanguage by AppSettings.translationLanguage.collectAsStateWithLifecycle()
     val theme by AppSettings.themeMode.collectAsStateWithLifecycle()
@@ -344,6 +349,7 @@ fun SettingsScreen(
     var importStatus by remember { mutableStateOf<String?>(null) }
     var confirmImport by remember { mutableStateOf(false) }
     var confirmClearSongCache by remember { mutableStateOf(false) }
+    var confirmDeleteAutomixModel by remember { mutableStateOf(false) }
     var showPerformanceWarning by remember { mutableStateOf(false) }
     var showPerformanceConfirmation by remember { mutableStateOf(false) }
     val backupScope = rememberCoroutineScope()
@@ -807,11 +813,9 @@ fun SettingsScreen(
                     SettingsRow(
                         icon = SfIcons.AutoAwesome,
                         title = automixTitle,
-                        subtitle = if (smartFade) {
-                            stringResource(R.string.automix_enabled_subtitle)
-                        } else {
-                            stringResource(R.string.automix_disabled_subtitle)
-                        },
+                        subtitle = stringResource(
+                            if (smartFade) R.string.automix_enabled_subtitle else R.string.automix_disabled_subtitle,
+                        ),
                         trailing = {
                             IosSwitch(
                                 checked = smartFade,
@@ -819,6 +823,64 @@ fun SettingsScreen(
                             )
                         },
                         onClick = { AppSettings.setSmartFadeEnabled(!smartFade) },
+                    )
+                }
+            }
+            // The weights Automix analyses with live outside the APK (see
+            // AutomixModels): switching Automix on fetches them by itself,
+            // and this row lets them be fetched ahead of time, retried after
+            // a failure, or removed to free the space.
+            val automixModelTitle = stringResource(R.string.automix_model)
+            row(automixModelTitle, "automix", "model", "download", "storage", "free space") {
+                val modelMb = (AutomixModels.totalBytes / 1_000_000).toInt()
+                when (val model = automixModels) {
+                    is AutomixModels.State.Downloading -> SettingsRow(
+                        icon = SfIcons.Download,
+                        title = automixModelTitle,
+                        subtitle = stringResource(
+                            R.string.automix_models_downloading,
+                            modelMb,
+                            (model.fraction * 100).toInt(),
+                        ),
+                    )
+                    // The action sits under the description rather than on the
+                    // right, where it squeezed the title and the text.
+                    AutomixModels.State.Failed -> SettingsRow(
+                        icon = SfIcons.Download,
+                        title = automixModelTitle,
+                        subtitleContent = {
+                            SubtitleWithAction(
+                                stringResource(R.string.automix_models_failed),
+                                stringResource(R.string.retry),
+                            )
+                        },
+                        onClick = AutomixModels::download,
+                        trailing = {},
+                    )
+                    AutomixModels.State.Ready -> SettingsRow(
+                        icon = SfIcons.Downloaded,
+                        title = automixModelTitle,
+                        subtitleContent = {
+                            SubtitleWithAction(
+                                stringResource(R.string.automix_model_ready, modelMb),
+                                stringResource(R.string.delete),
+                                actionColor = MaterialTheme.colorScheme.error,
+                            )
+                        },
+                        onClick = { confirmDeleteAutomixModel = true },
+                        trailing = {},
+                    )
+                    AutomixModels.State.Missing -> SettingsRow(
+                        icon = SfIcons.Download,
+                        title = automixModelTitle,
+                        subtitleContent = {
+                            SubtitleWithAction(
+                                stringResource(R.string.automix_model_missing),
+                                stringResource(R.string.automix_model_download, modelMb),
+                            )
+                        },
+                        onClick = AutomixModels::download,
+                        trailing = {},
                     )
                 }
             }
@@ -861,6 +923,21 @@ fun SettingsScreen(
                         onClick = { AppSettings.setSkipSilence(!skipSilence) },
                     )
                 }
+            }
+            val sleepTimerFadeOutTitle = stringResource(R.string.sleep_timer_fade_out)
+            row(sleepTimerFadeOutTitle, "sleep", "timer", "fade") {
+                SettingsRow(
+                    icon = SfIcons.SleepTimer,
+                    title = sleepTimerFadeOutTitle,
+                    subtitle = stringResource(R.string.sleep_timer_fade_out_subtitle),
+                    trailing = {
+                        IosSwitch(
+                            checked = sleepTimerFadeOut,
+                            onCheckedChange = AppSettings::setSleepTimerFadeOut,
+                        )
+                    },
+                    onClick = { AppSettings.setSleepTimerFadeOut(!sleepTimerFadeOut) },
+                )
             }
             val spatialAudioTitle = stringResource(R.string.spatial_audio)
             row(spatialAudioTitle, "surround", "3d") {
@@ -1148,6 +1225,21 @@ fun SettingsScreen(
                     onClick = { AppSettings.setFullBleedDetailArtwork(!fullBleedDetailArtwork) },
                 )
             }
+            val showTotalDurationTitle = stringResource(R.string.show_total_duration)
+            row(showTotalDurationTitle, "seek bar", "remaining time", "duration", "song length") {
+                SettingsRow(
+                    icon = SfIcons.Clock,
+                    title = showTotalDurationTitle,
+                    subtitle = stringResource(R.string.show_total_duration_subtitle),
+                    trailing = {
+                        IosSwitch(
+                            checked = showTotalDuration,
+                            onCheckedChange = AppSettings::setShowTotalDuration,
+                        )
+                    },
+                    onClick = { AppSettings.setShowTotalDuration(!showTotalDuration) },
+                )
+            }
             val playerThemeTitle = stringResource(R.string.player_theme)
             row(playerThemeTitle, "background", "player", "mesh", "gradient", "legacy", "simple", "blur") {
                 SettingsRow(
@@ -1254,21 +1346,29 @@ fun SettingsScreen(
                     }
                 }
             }
-            val syncedLyricsTitle = stringResource(R.string.synced_lyrics)
-            // Same reasoning as Animated cover art above: the lyrics source and
-            // translation rows are only here while this is on.
-            row(syncedLyricsTitle, "lyrics", "translation", "lrclib", "musixmatch") {
+            // This row replaced the old "Synced lyrics" switch, which is still
+            // the setting that turns the lookup itself off. Someone who switched
+            // that off before the change would be left without lyrics and no
+            // row to bring them back, so the line counts as hidden while
+            // either is set, and showing it turns lyrics back on too.
+            val lyricsHidden = hideLyricsPreview || !syncedLyrics
+            val setLyricsHidden: (Boolean) -> Unit = { hide ->
+                AppSettings.setHideLyricsPreview(hide)
+                if (!hide && !syncedLyrics) AppSettings.setSyncedLyrics(true)
+            }
+            val hideLyricsTitle = stringResource(R.string.hide_lyrics_preview)
+            row(hideLyricsTitle, "lyrics", "hide", "synced", "translation", "lrclib", "musixmatch") {
                 SettingsRow(
-                    icon = SfIcons.Notes,
-                    title = syncedLyricsTitle,
-                    subtitle = stringResource(R.string.synced_lyrics_subtitle),
+                    icon = SfIcons.VisibilityOff,
+                    title = hideLyricsTitle,
+                    subtitle = stringResource(R.string.hide_lyrics_preview_subtitle),
                     trailing = {
                         IosSwitch(
-                            checked = syncedLyrics,
-                            onCheckedChange = AppSettings::setSyncedLyrics,
+                            checked = lyricsHidden,
+                            onCheckedChange = setLyricsHidden,
                         )
                     },
-                    onClick = { AppSettings.setSyncedLyrics(!syncedLyrics) },
+                    onClick = { setLyricsHidden(!lyricsHidden) },
                 )
             }
             // Nothing to choose between while the feature is off, and the
@@ -1842,6 +1942,37 @@ fun SettingsScreen(
             },
             dismissButton = {
                 TextButton(onClick = { confirmClearSongCache = false }) {
+                    Text(stringResource(R.string.cancel))
+                }
+            },
+        )
+    }
+
+    // Deleting also turns Automix off: left on, its next analysis pass would
+    // simply download the model again.
+    if (confirmDeleteAutomixModel) {
+        AlertDialog(
+            onDismissRequest = { confirmDeleteAutomixModel = false },
+            title = { Text(stringResource(R.string.automix_model_delete_title)) },
+            text = {
+                Text(
+                    stringResource(
+                        R.string.automix_model_delete_warning,
+                        (AutomixModels.totalBytes / 1_000_000).toInt(),
+                    ),
+                )
+            },
+            confirmButton = {
+                TextButton(onClick = {
+                    confirmDeleteAutomixModel = false
+                    AppSettings.setSmartFadeEnabled(false)
+                    AutomixModels.delete()
+                }) {
+                    Text(stringResource(R.string.delete), color = MaterialTheme.colorScheme.error)
+                }
+            },
+            dismissButton = {
+                TextButton(onClick = { confirmDeleteAutomixModel = false }) {
                     Text(stringResource(R.string.cancel))
                 }
             },
@@ -2532,6 +2663,31 @@ internal fun RowDivider() {
 }
 
 /**
+ * A row's description with what tapping the row does set under it in
+ * [actionColor] — for rows whose action is too long to sit on the right.
+ */
+@Composable
+private fun SubtitleWithAction(
+    subtitle: String,
+    action: String,
+    actionColor: Color = MaterialTheme.colorScheme.primary,
+) {
+    Text(
+        text = subtitle,
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurfaceVariant,
+        maxLines = 5,
+    )
+    Text(
+        text = action,
+        style = MaterialTheme.typography.bodyMedium,
+        fontWeight = FontWeight.Medium,
+        color = actionColor,
+        modifier = Modifier.padding(top = 6.dp),
+    )
+}
+
+/**
  * The standard row: glyph, title, optional subtitle, and on the right either
  * [trailing] (a switch, say) or the current [value] followed by a chevron.
  *
@@ -2806,8 +2962,9 @@ internal fun SegmentedControl(
     onSelect: (Int) -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
+    disabled: Set<Int> = emptySet(),
 ) {
-    PillSegmentedControl(options, selectedIndex, onSelect, modifier, enabled)
+    PillSegmentedControl(options, selectedIndex, onSelect, modifier, enabled, disabled)
 }
 
 // ---- Pages ------------------------------------------------------------------

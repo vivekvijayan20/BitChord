@@ -84,6 +84,8 @@
     <string name="testing">Menguji…</string>
     <string name="connected">Terhubung</string>
     <string name="account_integrations">Akun &amp; integrasi</string>
+    <string name="youtube_premium_audio">Audio YouTube Premium</string>
+    <string name="youtube_premium_audio_subtitle">Saya punya Premium: putar Opus berkualitas lebih tinggi ~256 kbps, bukan 160 kbps standar</string>
     <string name="account_scrobbling">Akun &amp; scrobbling</string>
     <string name="rich_presence">Rich presence</string>
     <string name="scrobbling">Scrobbling</string>
@@ -195,6 +197,7 @@
     <string name="crossfade">Crossfade</string>
     <string name="crossfade_subtitle">Memadukan satu trek ke trek berikutnya</string>
     <string name="automix">Automix [BETA]</string>
+    <string name="automix_overview">Ringkasan Automix</string>
     <string name="skip_silence">Lewati keheningan</string>
     <string name="skip_silence_subtitle">Memotong jeda lebih dari satu detik</string>
     <string name="skip_silence_float_subtitle">Tidak tersedia pada output float 32-bit</string>
@@ -499,8 +502,14 @@
     <string name="listen_most_around">Anda paling banyak mendengarkan sekitar %1$s.</string>
     <string name="lyrics_share_title">Bagikan lirik</string>
     <string name="lyrics_share_description">Baris yang kamu pilih, ditata pada kartu bersama sampul.</string>
-    <string name="lyrics_share_story">Jadikan story</string>
-    <string name="lyrics_share_story_revert">Kembali ke kartu</string>
+    <string name="lyrics_share_story">Ubah jadi story</string>
+    <string name="lyrics_share_story_revert">Ubah jadi kartu</string>
+    <string name="lyrics_share_canvas">Canvas</string>
+    <string name="lyrics_share_video">Video</string>
+    <string name="lyrics_share_image">Gambar</string>
+    <string name="lyrics_share_saving">Menyimpan…</string>
+    <string name="lyrics_share_gradient">Gradien</string>
+    <string name="lyrics_share_show_logo">Tampilkan logo BitChord</string>
     <string name="listening_shape">Pola mendengarkan Anda</string>
     <string name="member_since">Anggota sejak</string>
     <string name="member_since_value">Anggota sejak %1$s</string>
@@ -623,6 +632,14 @@
     <string name="version_cut_aligned">selaras</string>
     <string name="automix_enabled_subtitle">Mengatur waktu dan memadukan setiap transisi dari trek itu sendiri. Nonaktifkan jika ponsel menjadi panas atau pemutaran tersendat.</string>
     <string name="automix_disabled_subtitle">Mengatur waktu dan memadukan transisi secara otomatis, tanpa penggeser. Performa dapat bervariasi pada perangkat yang lebih lambat.</string>
+    <string name="automix_models_downloading">Mengunduh Automix (%1$d MB)… %2$d%%. Lagu memakai crossfade biasa sampai selesai.</string>
+    <string name="automix_model">Model Automix</string>
+    <string name="automix_model_missing">Belum diunduh. Automix mengunduhnya saat diaktifkan, atau unduh sekarang.</string>
+    <string name="automix_model_download">Unduh (%1$d MB)</string>
+    <string name="automix_model_ready">Sudah diunduh, memakai %1$d MB di perangkat ini.</string>
+    <string name="automix_models_failed">Tidak dapat mengunduh model. Periksa koneksi Anda dan coba lagi.</string>
+    <string name="automix_model_delete_title">Hapus model Automix?</string>
+    <string name="automix_model_delete_warning">Ini mengosongkan %1$d MB dan menonaktifkan Automix. Mengaktifkan Automix lagi akan mengunduh model kembali.</string>
     <string name="advanced_automix">Automix Lanjutan</string>
     <string name="advanced_automix_subtitle">Mencampur seperti DJ: menjaga ketukan tetap selaras, melakukan setiap perpindahan tepat di ketukan, dan memotong antar lagu yang tidak cocok. Tanpa pemrosesan tambahan.</string>
     <string name="no_lyrics_sources_enabled">Tidak ada. Lirik tidak akan diambil.</string>
@@ -1434,4 +1451,23 @@
     <string name="bit_perfect_status_inexact">%1$s · tidak persis: sumber ini bukan PCM lossless</string>
     <string name="bit_perfect_status_waiting">Menunggu trek lossless pada output yang didukung</string>
     <string name="bit_perfect_status_unavailable">Tidak tersedia untuk trek ini (%1$s)</string>
+    <string name="find_a_playlist">Cari playlist</string>
+    <string name="no_playlists_match">Tidak ada playlist yang cocok dengan “%1$s”</string>
+    <string name="hide_lyrics_preview">Sembunyikan lirik</string>
+    <string name="hide_lyrics_preview_subtitle">Menyembunyikan baris lirik di pemutar</string>
+    <string name="show_total_duration">Tampilkan durasi total</string>
+    <string name="show_total_duration_subtitle">Menampilkan durasi penuh lagu, bukan sisa waktu</string>
+    <string name="sleep_timer_fade_out">Pelankan sebelum jeda</string>
+    <string name="sleep_timer_fade_out_subtitle">Menurunkan volume perlahan selama 30 detik terakhir</string>
+    <string name="disable_spotify_canvas">Nonaktifkan Spotify Canvas</string>
+    <string name="disable_spotify_canvas_subtitle">Jangan pernah gunakan Spotify Canvas. Sampul animasi berasal dari sumber lain</string>
+    <plurals name="queue_removed_count">
+        <item quantity="other">%1$d lagu dihapus</item>
+    </plurals>
+    <string name="queue_removed_song">%1$s dihapus</string>
+    <string name="queue_undo_action">Urungkan</string>
+    <string name="queue_cleared">Antrean dikosongkan</string>
+    <string name="queue_selected_count">%1$d dipilih</string>
+    <string name="queue_playlist_added">%1$d dari %2$d lagu ditambahkan</string>
+    <string name="queue_playlist_partial">%1$s (%2$d tidak kompatibel, %3$d sudah ada, %4$d gagal)</string>
 </resources>

@@ -89,6 +89,8 @@
     <string name="testing">Wird getestet…</string>
     <string name="connected">Verbunden</string>
     <string name="account_integrations">Konto &amp; Integrationen</string>
+    <string name="youtube_premium_audio">YouTube Premium-Audio</string>
+    <string name="youtube_premium_audio_subtitle">Ich habe Premium: das hochwertigere Opus mit ~256 kbps statt der üblichen 160 kbps streamen</string>
     <string name="account_scrobbling">Konto &amp; Scrobbling</string>
     <string name="rich_presence">Rich Presence</string>
     <string name="scrobbling">Scrobbling</string>
@@ -200,6 +202,7 @@
     <string name="crossfade">Überblendung</string>
     <string name="crossfade_subtitle">Blendet einen Track in den nächsten über</string>
     <string name="automix">Automix [BETA]</string>
+    <string name="automix_overview">Automix-Übersicht</string>
     <string name="skip_silence">Stille überspringen</string>
     <string name="skip_silence_subtitle">Kürzt Pausen länger als eine Sekunde</string>
     <string name="skip_silence_float_subtitle">Bei 32-Bit-Float-Ausgabe nicht verfügbar</string>
@@ -514,8 +517,14 @@
     <string name="listen_most_around">Du hörst am meisten gegen %1$s.</string>
     <string name="lyrics_share_title">Songtext teilen</string>
     <string name="lyrics_share_description">Die Zeilen, die du ausgewählt hast, auf einer Karte mit dem Cover.</string>
-    <string name="lyrics_share_story">Als Story formatieren</string>
-    <string name="lyrics_share_story_revert">Zurück zur Karte</string>
+    <string name="lyrics_share_story">In Story umwandeln</string>
+    <string name="lyrics_share_story_revert">In Karte umwandeln</string>
+    <string name="lyrics_share_canvas">Canvas</string>
+    <string name="lyrics_share_video">Video</string>
+    <string name="lyrics_share_image">Bild</string>
+    <string name="lyrics_share_saving">Wird gespeichert…</string>
+    <string name="lyrics_share_gradient">Verlauf</string>
+    <string name="lyrics_share_show_logo">BitChord-Logo anzeigen</string>
     <string name="listening_shape">Dein Hörmuster</string>
     <string name="member_since">Mitglied seit</string>
     <string name="member_since_value">Mitglied seit %1$s</string>
@@ -642,6 +651,14 @@
     <string name="version_cut_aligned">ausgerichtet</string>
     <string name="automix_enabled_subtitle">Timing und Überblendung jedes Übergangs werden direkt aus den Titeln bestimmt. Schalte dies aus, wenn das Telefon heiß wird oder die Wiedergabe stockt.</string>
     <string name="automix_disabled_subtitle">Timing und Überblendung von Übergängen erfolgen automatisch, ohne Regler. Die Leistung kann auf langsameren Geräten variieren.</string>
+    <string name="automix_models_downloading">Automix wird heruntergeladen (%1$d MB)… %2$d%%. Bis dahin werden Titel normal überblendet.</string>
+    <string name="automix_model">Automix-Modell</string>
+    <string name="automix_model_missing">Nicht heruntergeladen. Automix lädt es beim Einschalten, oder lade es jetzt herunter.</string>
+    <string name="automix_model_download">Herunterladen (%1$d MB)</string>
+    <string name="automix_model_ready">Heruntergeladen, belegt %1$d MB auf diesem Gerät.</string>
+    <string name="automix_models_failed">Das Modell konnte nicht heruntergeladen werden. Prüfe deine Verbindung und versuche es erneut.</string>
+    <string name="automix_model_delete_title">Automix-Modell löschen?</string>
+    <string name="automix_model_delete_warning">Dadurch werden %1$d MB frei und Automix wird ausgeschaltet. Beim erneuten Einschalten wird das Modell wieder heruntergeladen.</string>
     <string name="advanced_automix">Erweiterter Automix</string>
     <string name="advanced_automix_subtitle">Mischt wie ein DJ: hält die Beats synchron, setzt jeden Übergang auf den Beat und schneidet zwischen Songs, die nicht zusammenpassen. Keine zusätzliche Verarbeitung.</string>
     <string name="no_lyrics_sources_enabled">Keine. Songtexte werden nicht abgerufen.</string>
@@ -1457,4 +1474,24 @@
     <string name="bit_perfect_status_inexact">%1$s · nicht exakt: Diese Quelle ist kein verlustfreies PCM</string>
     <string name="bit_perfect_status_waiting">Warte auf einen verlustfreien Titel an einem unterstützten Ausgang</string>
     <string name="bit_perfect_status_unavailable">Für diesen Titel nicht verfügbar (%1$s)</string>
+    <string name="find_a_playlist">Playlist finden</string>
+    <string name="no_playlists_match">Keine Playlists für „%1$s“</string>
+    <string name="hide_lyrics_preview">Songtext ausblenden</string>
+    <string name="hide_lyrics_preview_subtitle">Blendet die Songtextzeile im Player aus</string>
+    <string name="show_total_duration">Gesamtdauer anzeigen</string>
+    <string name="show_total_duration_subtitle">Zeigt die volle Länge des Songs statt der Restzeit</string>
+    <string name="sleep_timer_fade_out">Vor dem Pausieren ausblenden</string>
+    <string name="sleep_timer_fade_out_subtitle">Senkt die Lautstärke in den letzten 30 Sekunden langsam ab</string>
+    <string name="disable_spotify_canvas">Spotify Canvas deaktivieren</string>
+    <string name="disable_spotify_canvas_subtitle">Spotify Canvas nie verwenden. Animierte Cover kommen dann aus den anderen Quellen</string>
+    <plurals name="queue_removed_count">
+        <item quantity="one">%1$d Song entfernt</item>
+        <item quantity="other">%1$d Songs entfernt</item>
+    </plurals>
+    <string name="queue_removed_song">%1$s entfernt</string>
+    <string name="queue_undo_action">Rückgängig</string>
+    <string name="queue_cleared">Warteschlange geleert</string>
+    <string name="queue_selected_count">%1$d ausgewählt</string>
+    <string name="queue_playlist_added">%1$d von %2$d Songs hinzugefügt</string>
+    <string name="queue_playlist_partial">%1$s (%2$d nicht kompatibel, %3$d bereits vorhanden, %4$d fehlgeschlagen)</string>
 </resources>
